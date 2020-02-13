@@ -49,12 +49,10 @@ player_info = Player(room[location],player)
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 
-print('\nWelcome, {player}. An adventure awaits you,\nshould you choose to accept it.')
-
-print('\n{player}, {player.location}')
+print(f'\nWelcome, {player}. An adventure awaits you\nshould you choose to accept it.')
 
 game = True 
-player_input = input("Where would you like to go> [n] North [e] East [s] South [w] West [q] Quit")
+player_input = input("Where would you like to go? [n] North [e] East [s] South [w] West [q] Quit")
 player_input = player_input.split(" ")
 intro = True
 # If the user enters a cardinal direction, attempt to move to the room there.

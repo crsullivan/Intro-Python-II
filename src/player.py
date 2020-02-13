@@ -2,9 +2,9 @@
 # currently.
 
 class Player:
-    def __init__(self, name, place):
+    def __init__(self, name, location):
         self.name = name
-        self.place = place
+        self.location = location
 
     def __str__(self):
-        print(f"{self.name}\n{self.place}")
+        print(f"{self.name}\n{self.location}")
