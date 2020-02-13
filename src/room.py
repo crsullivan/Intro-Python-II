@@ -2,7 +2,7 @@
 # description attributes.
 
 class Room:
-    def __init__(self, name, description):
+    def __init__(self, name, description, items):
         self.name = name
         self.description = description
         self.n_to = None
@@ -10,6 +10,11 @@ class Room:
         self.e_to = None
         self.w_to = None
 
+    def __str__(self):
+        stuff = f"Room name: {self.name} \nDescription: {self.description} \nItems: "
+        if len(self.items)>0:
+            for i in self.items:
+                stuff += f" {i}"
     
     def __str__(self):
         return f"You enter the {self.name} room and see {self.description}"
