@@ -10,15 +10,13 @@ class Room:
         self.s_to = None
         self.e_to = None
         self.w_to = None
-
+    
     def __str__(self):
-        stuff = f"Room name: {self.name} \nDescription: {self.description} \nItems: "
+        stuff = f"\nItems here: "
         if len(self.items)>0:
             for i in self.items:
                 stuff += f" {i}"
         else:
             stuff += "None"
-        return stuff
-    
-    def __str__(self):
-        return f"You enter the {self.name} room and see {self.description}"
+
+        return f"\nYou enter the {self.name} room and see {self.description} {stuff}"

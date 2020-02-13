@@ -52,12 +52,6 @@ print(f'\nWelcome, {player_name}. An adventure awaits you\nshould you choose to 
 
 player = Player(player_name, room["outside"])
 
-def travel(to_location):
-    if to_location != None:
-        player.location = to_location
-    else:
-        print("Something doesn't look right up ahead... No you can't go that way. You turn around and head back.") 
-
 # Write a loop that:
 #
 # * Prints the current room name
@@ -81,7 +75,7 @@ continue_game = True
 print("\nWatch your step...\n")
 print(player.location)
 while True:
-    print("Where would you like to go? [n] North [e] East [s] South [w] West [q] Quit")
+    print("\nWhere would you like to go? [n] North [e] East [s] South [w] West [q] Quit")
     cmd = input("-> ").lower()
     if cmd in ["n", "s", "e", "w"]:
         # Move to that room

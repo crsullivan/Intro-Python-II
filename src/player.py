@@ -13,7 +13,7 @@ class Player:
             self.location = next_room
             print(self.location)
         else:
-            print("You cannot move in that direction")
+            print("Something doesn't look right up ahead... No you can't go that way. You turn around and head back.")
 
     def __str__(self):
         return f"{self.name}\n{self.location}"
