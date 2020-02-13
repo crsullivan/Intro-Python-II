@@ -40,8 +40,8 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 
 player = input("Who are you? ")
-starting_location = "outside"
-player_info = Player(room[starting_location],player)
+location = "outside"
+player_info = Player(room[location],player)
 
 # Write a loop that:
 #
@@ -49,9 +49,18 @@ player_info = Player(room[starting_location],player)
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 
+print('\nWelcome, {player}. An adventure awaits you,\nshould you choose to accept it.')
 
+print('\n{player}, {player.location}')
 
+game = True 
+player_ipnut = input("Where would you like to go> [n] North [e] East [s] South [w] West [q] Quit")
+player_input = player_input.split(" ")
+intro = True
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while game_on:
+    if intro: 
