@@ -77,11 +77,11 @@ continue_game = True
 # If the user enters "q", quit the game.
 
 # trying to set this while loop to keep iterating even if the user provides invalid input instead of forcing them to reopen the file
-direction = "Where would you like to go? [n] North [e] East [s] South [w] West [q] Quit -> " 
 
 print("\nWatch your step...\n")
 print(player.location)
 while True:
+    print("Where would you like to go? [n] North [e] East [s] South [w] West [q] Quit")
     cmd = input("-> ").lower()
     if cmd in ["n", "s", "e", "w"]:
         # Move to that room
