@@ -39,9 +39,24 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-player = input("Who are you? ")
-location = "outside"
-player_info = Player(room[location],player)
+player_name = input("\nWho are you? ")
+
+print(f'\nWelcome, {player_name}. An adventure awaits you\nshould you choose to accept it.\n')
+# player_agree = input("Well? What say you? [y] Yes [n] No\n " )
+# player_agree = player_agree.split(" ")   
+# choice = input(player_agree)    
+# if choice == "y":
+#     print("\nVery good, your cooperation is, well, appreciated")
+# else: 
+#     print("\nThats really too bad.. For you. You don't seem to have a choice, something beckons you forward")
+
+player = Player(player_name, room["outside"])
+
+def travel(to_location):
+    if to_location != None:
+        player.location = to_location
+    else:
+        print("Something doesn't look right up ahead... No you can't go that way. You turn around and head back.") 
 
 # Write a loop that:
 #
@@ -49,35 +64,30 @@ player_info = Player(room[location],player)
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 
-print(f'\nWelcome, {player}. An adventure awaits you\nshould you choose to accept it.')
+
+# print(f'\nBefore you lies the {location}, as you look around you can see {player_info.room.description}.')
 
 game = True 
-player_input = input("Where would you like to go? [n] North [e] East [s] South [w] West [q] Quit")
-player_input = player_input.split(" ")
 intro = True
+continue_game = True
+
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
 
-while game:
-    if intro:
-        print("Watch your step.")
-        intro = False
-        print("You have entered the {player.location.name} room, from here you can see {player.location.description}.")
-        direction = input(player_input)
-        if direction == "n":
-            ## go north
-            pass
-        if direction == "e":
-            ## go east
-            pass
-        if direction == "s":
-            ## go south
-            pass
-        if direction == "w":
-            ## go west
-            pass
-        if direction == "q":
-            ## quit game
-            pass
+# trying to set this while loop to keep iterating even if the user provides invalid input instead of forcing them to reopen the file
+direction = "Where would you like to go? [n] North [e] East [s] South [w] West [q] Quit -> " 
+
+print("\nWatch your step...\n")
+print(player.location)
+while True:
+    cmd = input("-> ").lower()
+    if cmd in ["n", "s", "e", "w"]:
+        # Move to that room
+        player.travel(cmd)
+    elif cmd == "q":
+        print("Thanks for playing sully's wild ride!")
+        exit()
+    else:
+        print("That doesn't look like a valid command.... look at your keyboard this time and try again")

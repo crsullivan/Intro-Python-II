@@ -6,5 +6,13 @@ class Player:
         self.name = name
         self.location = location
 
+    def travel(self, direction):
+        next_room = getattr(self.location, f"{direction}_to")
+        if next_room is not None:
+            self.location = next_room
+            print(self.location)
+        else:
+            print("You cannot move in that direction")
+
     def __str__(self):
-        print(f"{self.name}\n{self.location}")
+        return f"{self.name}\n{self.location}"
