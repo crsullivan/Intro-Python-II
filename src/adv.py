@@ -54,7 +54,7 @@ print('\nWelcome, {player}. An adventure awaits you,\nshould you choose to accep
 print('\n{player}, {player.location}')
 
 game = True 
-player_ipnut = input("Where would you like to go> [n] North [e] East [s] South [w] West [q] Quit")
+player_input = input("Where would you like to go> [n] North [e] East [s] South [w] West [q] Quit")
 player_input = player_input.split(" ")
 intro = True
 # If the user enters a cardinal direction, attempt to move to the room there.
@@ -62,5 +62,24 @@ intro = True
 #
 # If the user enters "q", quit the game.
 
-while game_on:
-    if intro: 
+while game:
+    if intro:
+        print("Watch your step.")
+        intro = False
+        print("You have entered the {player.location.name} room, from here you can see {player.location.description}.")
+        direction = input(player_input)
+        if direction == "n":
+            ## go north
+            pass
+        if direction == "e":
+            ## go east
+            pass
+        if direction == "s":
+            ## go south
+            pass
+        if direction == "w":
+            ## go west
+            pass
+        if direction == "q":
+            ## quit game
+            pass
