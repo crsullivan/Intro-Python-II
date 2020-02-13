@@ -5,6 +5,7 @@ class Player:
     def __init__(self, name, location):
         self.name = name
         self.location = location
+        self.items = []
 
     def travel(self, direction):
         next_room = getattr(self.location, f"{direction}_to")
