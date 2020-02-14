@@ -1,5 +1,7 @@
 from room import Room
 from player import Player
+from items import Items
+import random
 # Declare all the rooms
 
 room = {
@@ -7,20 +9,22 @@ room = {
                      "North of you, the cave mount beckons", []),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", ['Empty Bottles']),
+passages run north and east.""", []),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", ['Flare Gun']),
+the distance, but there is no way across the chasm.""", []),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", ['Torch']),
+to north. The smell of gold permeates the air.""", []),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", ['Signet Ring']),
+earlier adventurers. The only exit is to the south.""", []),
 }
 
+for item in Items:
+    room[random.choice(list(room.keys()))].items.append(Items[item])
 
 # Link rooms together
 
@@ -75,12 +79,27 @@ continue_game = True
 print("\nWatch your step...\n")
 print(player.location)
 while True:
-    print("\nWhere would you like to go? [n] North [e] East [s] South [w] West [q] Quit")
-    cmd = input("-> ").lower()
-    if cmd in ["n", "s", "e", "w"]:
-        # Move to that room
-        player.travel(cmd)
-    elif cmd == "q":
+    print("\nWhat would you like to do? [n] Go North [e] Go East [s] Go South [w] Go West [p] Pick up item [q] Quit")
+    cmd = input("-> ").split(" ")
+    if len(cmd) >= 2:
+        if cmd[0].lower() == 'get' or cmd[0].lower() == 'take':
+            for i in range(len(player.location.items)):
+                item = player.location.items[i]
+                if cmd[1].lower() == item.name.lower():
+                    player.items.append(player.location.items.pop(i))
+                    item.pickup()
+                    # print(player.items[0].name)
+                    break
+        elif cmd[0].lower() == 'drop':
+            for i in range(len(player.items)):
+                item = player.items[i]
+                if cmd[1].lower() == item.name.lower():
+                    player.location.items.append(player.items.pop(i))
+                    item.drop()
+                    break
+    elif cmd[0].lower() in ["n", "s", "e", "w"]:
+        player.travel(cmd[0])
+    elif cmd[0].lower() == "q":
         print("Thanks for playing sully's wild ride!")
         exit()
     else:

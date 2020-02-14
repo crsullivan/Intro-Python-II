@@ -3,8 +3,11 @@ class Item:
         self.name = name
         self.description = description
 
-    def pickup(self, item):
-        return f'\n You found {item}... Hopefully it will come in handy\n'
+    def pickup(self):
+        print(f'\n You picked up {self.name}... Hopefully it will come in handy\n')
+
+    def drop(self):
+        print(f'\n You tossed {self.name}')
 
     def __str__(self):
-        return f'Item: {self.name}\nItem Description: {self.description}'
+        return f'\nItem: {self.name}\nItem Description: {self.description}'
