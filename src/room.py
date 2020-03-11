@@ -19,4 +19,4 @@ class Room:
         else:
             stuff += "None"
 
-        return f"\nYou enter the {self.name} room and see {self.description} {stuff}"
+        return f"\nYou enter the {self.name} and see {self.description} {stuff}"

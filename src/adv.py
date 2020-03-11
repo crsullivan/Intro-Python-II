@@ -5,8 +5,11 @@ import random
 # Declare all the rooms
 
 room = {
+    'forest':  Room("Charred Forest",
+                     "This burnt forest is surrounded on all sides by canyon walls, except one.. The canyon winds to the west, the same direction you heard that scream", []),
+
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", []),
+                     "North of you, a cave mount beckons, to the east lies the charred forest you awakened in.", []),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", []),
@@ -27,8 +30,9 @@ for item in Items:
     room[random.choice(list(room.keys()))].items.append(Items[item])
 
 # Link rooms together
-
+room['forest'].w_to = room['outside']
 room['outside'].n_to = room['foyer']
+room['outside'].e = room['forest']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
 room['foyer'].e_to = room['narrow']
@@ -45,7 +49,7 @@ room['treasure'].s_to = room['narrow']
 
 player_name = input("\nWho are you? ")
 
-print(f'\nWelcome, {player_name}. An adventure awaits you\nshould you choose to accept it.\n')
+print(f'\n   {player_name}, you awaken to the faint scent of brimstone and lingering smoke. As you lie in the dirt you try to recall how you got to this place, but your mind is racing, and your thoughts escape you.\n\n   Where you are you do not know. However this place, it seems somewhat familiar... \n\n   You stand up and look around, the forest around you, or at least what remains is burnt and charred, all that lies in many places is ash. \n\n   You feel around in your pockets, nothing, nothing... There! Something in your left breast pocket, the one you never use.... A compass, hopefully it comes in handy.   \n\n   At this moment something unmistakeable catches your ear, a scream.\n\n   Not a horror movie theme park thriller scream either, this is bloodcurdling, throaty, desperate, a fight for your life kind of scream.\n\n   Your goose bumps have goose bumps, the hairs on your neck bristle so hard you feel you shirt lift up ever so slightly. \n\n  You take out your compass, the scream came from the west. \n\n  {player_name}, what do you do?  \n')
 # player_agree = input("Well? What say you? [y] Yes [n] No\n " )
 # player_agree = player_agree.split(" ")   
 # choice = input(player_agree)    
@@ -54,7 +58,7 @@ print(f'\nWelcome, {player_name}. An adventure awaits you\nshould you choose to 
 # else: 
 #     print("\nThats really too bad.. For you. You don't seem to have a choice, something beckons you forward")
 
-player = Player(player_name, room["outside"])
+player = Player(player_name, room["forest"])
 
 # Write a loop that:
 #
@@ -76,7 +80,7 @@ continue_game = True
 
 # trying to set this while loop to keep iterating even if the user provides invalid input instead of forcing them to reopen the file
 
-print("\nWatch your step...\n")
+print("\n Watch your step...\n")
 print(player.location)
 while True:
     print("\nWhat would you like to do? [n] Go North [e] Go East [s] Go South [w] Go West [p] Pick up item [q] Quit")
