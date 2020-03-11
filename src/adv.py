@@ -2,22 +2,23 @@ from room import Room
 from player import Player
 from items import Items
 from baddies import Baddies
+from weapons import Weapons
 import random
 # Declare all the rooms
 
 room = {
-    'forest':  Room("Charred Forest", """This burnt forest is surrounded on all sides by canyon walls, except one.. The canyon winds to the west, the same direction you heard that   scream.""", [], []),
+    'forest':  Room("Charred Forest", """This burnt forest is surrounded on all sides by canyon walls, except one.. The canyon winds to the west, the same direction you heard that   scream.""", [], [], []),
 
-    'outside':  Room("Outside Cave Entrance", """North of you, a cave mount beckons, to the east lies the charred forest you awakened in.""", [], []),
+    'outside':  Room("Outside Cave Entrance", """North of you, a cave mount beckons, to the east lies the charred forest you awakened in.""", [], [], []),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty passages run north and east.""", [], []),
+    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty passages run north and east.""", [], [], []),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in
-        the distance, but there is no way across the chasm.""", [], []),
+        the distance, but there is no way across the chasm.""", [], [], []),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west to north. The smell of gold permeates the air.""", [], []),
+    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west to north. The smell of gold permeates the air.""", [], [], []),
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south.""", [], []),
+    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south.""", [], [], []),
 }
 
 for item in Items:
@@ -25,6 +26,9 @@ for item in Items:
 
 for baddie in Baddies:
     room[random.choice(list(room.keys()))].baddies.append(Baddies[baddie])
+
+for weapon in Weapons: 
+    room[random.choice(list(room.keys()))].weapons.append(Weapons[weapon])
 
 # Link rooms together
 room['forest'].w_to = room['outside']
