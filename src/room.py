@@ -24,6 +24,7 @@ class Room:
         if len(self.baddies)>0:
             for i in self.baddies:
                 enemies += f" {i}"
+                print("ENEMIES", enemies)
         else:
             enemies += "None"
         weps = f"\n Weapons here: "
@@ -32,7 +33,7 @@ class Room:
                 weps += f" {i}"
         else:
             weps += "None"
-        return f"\nYou enter the {self.name} and see {self.description}\n {stuff} \n {enemies} \n {weps}"
+        return f"\nYou enter the {self.name} and see {self.description} \n {stuff} \n {enemies} \n {weps}"
 
     # def __str__(self):
     #     stuff = f"\nEnemies here: "

@@ -50,7 +50,14 @@ room['treasure'].s_to = room['narrow']
 
 player_name = input("\n Who are you? ")
 
-print(f'\n   {player_name}, you awaken to the faint scent of brimstone and lingering smoke. As you lie in the dirt you try to recall how you got to this place, but your mind is racing, and your thoughts escape you.\n\n   Where you are you do not know. However this place, it seems somewhat familiar... \n\n   You stand up and look around, the forest around you, or at least what remains is burnt and charred, all that lies in many places is ash. \n\n   You feel around in your pockets, nothing, nothing... There! Something in your left breast pocket, the one you never use.... A compass, hopefully it comes in handy.   \n\n   At this moment something unmistakeable catches your ear, a scream.\n\n   Not a horror movie theme park thriller scream either, this is bloodcurdling, throaty, desperate, a fight for your life kind of scream.\n\n   Your goose bumps have goose bumps, the hairs on your neck bristle so hard you feel you shirt lift up ever so slightly. \n\n   You take out your compass, the scream came from the west. \n\n   {player_name}, what do you do?  \n')
+print(f'\n   {player_name}, you awaken to the faint scent of brimstone and lingering smoke. As you lie in the dirt you try to recall how you got to this place, but your mind is racing, and your thoughts escape you.\n\n   Where you are you do not know. However this place, it seems somewhat familiar... \n\n   You stand up and look around, the forest around you, or at least what remains is burnt and charred, all that lies in many places is ash. \n\n   You feel around in your pockets, nothing, nothing... There! Something in your left breast pocket, the one you never use.... A compass, hopefully it comes in handy.   \n\n   At this moment something unmistakeable catches your ear, a scream.\n\n   Not a horror movie theme park thriller scream either, this is bloodcurdling, throaty, desperate, a fight for your life kind of scream.\n\n   Your goose bumps have goose bumps, the hairs on your neck bristle so hard you feel you shirt lift up ever so slightly. \n\n   You take out your compass, the scream came from the west. \n\n')
+accept = input(f"\n {player_name}, what do you do? ")
+print('[p] Proceed [q] Lay Back Down')
+cmd = input("-> ").split(" ")
+if cmd[0].lower() == 'p':
+        pass
+elif cmd[0].lower() == 'p':
+        pass
 # player_agree = input("Well? What say you? [y] Yes [n] No\n " )
 # player_agree = player_agree.split(" ")   
 # choice = input(player_agree)    
@@ -95,6 +102,14 @@ while True:
                     item.pickup()
                     # print(player.items[0].name)
                     break
+        elif cmd[0].lower() == 'equip':
+            for i in range(len(player.location.weapons)):
+                weapon = player.location.weapons[i]
+                if cmd[1].lower() == weapon.name.lower():
+                    player.items.append(player.location.weapons.pop(i))
+                    weapon.equip()
+                    # print(player.items[0].name)
+                    break
         elif cmd[0].lower() == 'drop':
             for i in range(len(player.items)):
                 item = player.items[i]
@@ -104,6 +119,8 @@ while True:
                     break
     elif cmd[0].lower() in ["n", "s", "e", "w"]:
         player.travel(cmd[0])
+    elif cmd[0].lower() == "i":
+        player.inventory()
     elif cmd[0].lower() == "q":
         print("Thanks for playing sully's wild ride!")
         exit()

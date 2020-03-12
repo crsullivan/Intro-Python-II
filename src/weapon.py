@@ -4,11 +4,9 @@ class Weapon:
         self.description = description
         self.damage = damage
 
-    def pickup(self):
-        print(f'\n You picked up {self.name}... Hopefully it will come in handy\n')
+    def equip(self):
+        print(f'\n You equipped {self.name}... Hopefully it will come in handy\n')
 
-    def drop(self):
-        print(f'\n You tossed {self.name}')
 
     def __str__(self):
         return f'\n Weapon: {self.name}\n Weapon Description: {self.description}'
