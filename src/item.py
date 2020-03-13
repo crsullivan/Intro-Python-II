@@ -10,4 +10,4 @@ class Item:
         print(f'\n You tossed {self.name}')
 
     def __str__(self):
-        return f'\nItem: {self.name}\nItem Description: {self.description}'
+        return f'\n Item: {self.name}\n Item Description: {self.description}'
